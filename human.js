@@ -1,4 +1,4 @@
-var husman = {
+var human = {
     head: [],
     chest: [],
     abdomen: [],
@@ -6,12 +6,12 @@ var husman = {
     pelvis: [],
     legs: [],
 };
-husman.head = ["Brain", "Ear", "Eye", "Face", "Hair", "Mouth", "Nose", "Throat", "Head", "Neck", "Blood", "Bones and Joints", "Hormones", "Jaw", "Lymph nodes", "Nerves and Nervous System", "Skin"];
-husman.chest = ["Back", "Breast", "Heart", "Lungs", "Spine", "Thyroid", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
-husman.abdomen = ["Appendix", "Colon", "Gallbladder", "Kidney", "Liver", "Pancreas", "Rectum", "Stomach", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin", "Spleen"];
-husman.arm = ["Elbow", "Finger", "Hand", "Shoulder", "Wrist", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
-husman.pelvis = ["Bladder", "Groin", "Hip", "Uterus", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
-husman.legs = ["Ankle", "Foot", "Heel", "Knee", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+human.head = ["Brain", "Ear", "Eye", "Face", "Hair", "Mouth", "Nose", "Throat", "Head", "Neck", "Blood", "Bones and Joints", "Hormones", "Jaw", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+human.chest = ["Back", "Breast", "Heart", "Lungs", "Spine", "Thyroid", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+human.abdomen = ["Appendix", "Colon", "Gallbladder", "Kidney", "Liver", "Pancreas", "Rectum", "Stomach", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin", "Spleen"];
+human.arm = ["Elbow", "Finger", "Hand", "Shoulder", "Wrist", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+human.pelvis = ["Bladder", "Groin", "Hip", "Uterus", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+human.legs = ["Ankle", "Foot", "Heel", "Knee", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
 
 conditionsItems = {
     brain: ["Acoustic Neuroma (Vestibular Schwannoma)", "Adult Hydrocephalus", "Aortic Dissection ", "Autism", "Autistic Spectrum Disorder (Child)", "Behaviour", "Bonding With Your Child", "Brain Aneurysm", "Brain Scan", "Brain Tumour Biopsy", "Brain Tumours", "Brain cancer", "Cancer", "Carotid Endarterectomy", "Cerebral Aneurysm", "Childhood Anxiety Disorders", "Chronic Subdural Haematoma", "Cognitive-Behavioural Therapy", "Common Sleep Conditions in Infants, Children and Adolescents ", "Computed Tomography (CT)", "Confidence", "Convulsion Without Fever", "Decompressive Craniectomy", "Dementia", "Depression", "Development", "Epilepsy", "Excessive Daytime Sleepiness", "External Ventricular Drainage", "Febrile Fit", "Head Injury (Child)", "Headaches", "Insomnia", "Intracerebral Hemorrhage", "Intrathecal Drug Delivery", "Jet Lag, Shift Work and Circadian Rhythm Disorders", "Learning  ", "Lumbar Puncture", "Magnetic Resonance Imaging (MRI) Scan", "Meningiomas", "Metastatic Brain Tumours", "Minimally Invasive Surgery (MIS) Procedures in Neurosurgery", "Neurodevelopment in Babies", "Neuropathic (Nerve) Pain Syndrome", "Neurovascular", "Obstructive Sleep Apnoea ", "Obstructive Sleep Apnoea in Children", "Parasomnias in Adults", "Parasomnias in Children ", "Parkinson Disease and Movement Disorders", "Perinatal Depression", "Pituitary Tumours", "Play", "Postnatal Depression", "Radiofrequency Lesioning (Thermoablation) ", "Restless Legs Syndrome and Periodic Limb Movements in Sleep", "Senses  ", "Skull Base", "Sleep (Child)", "Sleep Deprivation", "Sleep Disorders", "Sleep Physiology", "Sleep-disordered Breathing and Snoring", "Sleepwalking", "Sleepy Driving", "Stroke", "Talk", "Ventricular Peritoneal Shunt", "Young Onset Cognitive Impairment (YOCI)"],
@@ -42,7 +42,7 @@ var default_option = {
     onClick: function (e) {
         document.querySelector("#statelist").innerHTML = '';
         document.querySelector("#conditions").innerHTML = '';
-        husman[e.key.toLowerCase()].forEach(item => {
+        human[e.key.toLowerCase()].forEach(item => {
             let option = document.createElement("div");
             option.innerText = item;
             option.classList = ['item']
