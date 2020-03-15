@@ -124,6 +124,7 @@ function HumanMap(container) {
     HumanMapComponent.schema = function () {
         return InputComponent.schema({
             type: 'husmanmap',
+            label: 'Husman Map'
             // numRows: 3,
             // numCols: 3
         });
