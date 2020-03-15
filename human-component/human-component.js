@@ -97,68 +97,121 @@ function HumanMap(container) {
     return human;
 }
 
+(function () {
+    human = {
+        head: [],
+        chest: [],
+        abdomen: [],
+        arm: [],
+        pelvis: [],
+        legs: [],
+    }
+    human.head = ["Brain", "Ear", "Eye", "Face", "Hair", "Mouth", "Nose", "Throat", "Head", "Neck", "Blood", "Bones and Joints", "Hormones", "Jaw", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+    human.chest = ["Back", "Breast", "Heart", "Lungs", "Spine", "Thyroid", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+    human.abdomen = ["Appendix", "Colon", "Gallbladder", "Kidney", "Liver", "Pancreas", "Rectum", "Stomach", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin", "Spleen"];
+    human.arm = ["Elbow", "Finger", "Hand", "Shoulder", "Wrist", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+    human.pelvis = ["Bladder", "Groin", "Hip", "Uterus", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
+    human.legs = ["Ankle", "Foot", "Heel", "Knee", "Blood", "Bones and Joints", "Hormones", "Lymph nodes", "Nerves and Nervous System", "Skin"];
 
-/**
- * Get the input component class by referencing Formio.Components.components map.
- */
-var InputComponent = Formio.Components.components.input;
+    human.conditionsItems = {
+        brain: ["Acoustic Neuroma (Vestibular Schwannoma)", "Adult Hydrocephalus", "Aortic Dissection ", "Autism", "Autistic Spectrum Disorder (Child)", "Behaviour", "Bonding With Your Child", "Brain Aneurysm", "Brain Scan", "Brain Tumour Biopsy", "Brain Tumours", "Brain cancer", "Cancer", "Carotid Endarterectomy", "Cerebral Aneurysm", "Childhood Anxiety Disorders", "Chronic Subdural Haematoma", "Cognitive-Behavioural Therapy", "Common Sleep Conditions in Infants, Children and Adolescents ", "Computed Tomography (CT)", "Confidence", "Convulsion Without Fever", "Decompressive Craniectomy", "Dementia", "Depression", "Development", "Epilepsy", "Excessive Daytime Sleepiness", "External Ventricular Drainage", "Febrile Fit", "Head Injury (Child)", "Headaches", "Insomnia", "Intracerebral Hemorrhage", "Intrathecal Drug Delivery", "Jet Lag, Shift Work and Circadian Rhythm Disorders", "Learning  ", "Lumbar Puncture", "Magnetic Resonance Imaging (MRI) Scan", "Meningiomas", "Metastatic Brain Tumours", "Minimally Invasive Surgery (MIS) Procedures in Neurosurgery", "Neurodevelopment in Babies", "Neuropathic (Nerve) Pain Syndrome", "Neurovascular", "Obstructive Sleep Apnoea ", "Obstructive Sleep Apnoea in Children", "Parasomnias in Adults", "Parasomnias in Children ", "Parkinson Disease and Movement Disorders", "Perinatal Depression", "Pituitary Tumours", "Play", "Postnatal Depression", "Radiofrequency Lesioning (Thermoablation) ", "Restless Legs Syndrome and Periodic Limb Movements in Sleep", "Senses  ", "Skull Base", "Sleep (Child)", "Sleep Deprivation", "Sleep Disorders", "Sleep Physiology", "Sleep-disordered Breathing and Snoring", "Sleepwalking", "Sleepy Driving", "Stroke", "Talk", "Ventricular Peritoneal Shunt", "Young Onset Cognitive Impairment (YOCI)"],
+        ear: ["Acoustic Neuroma (Vestibular Schwannoma)", "Acute Pharyngitis and Tonsillitis", "Cochlear Implant", "Ear Infections (Child)", "Ear Objects", "Ear Otitis Media  ", "Earwax in Children", "External Ear Infections - Otitis Externa", "External Ear Infections - Pinna Infection", "Hearing", "Hearing Loss", "Hearing Tests", "Middle Ear Infections  - Chronic Suppurative Otitis Media", "Middle Ear Infections - Acute Otitis Media", "Minimally Invasive Surgery (MIS) Procedures in Otolaryngology (Ear, Nose and Throat)", "Otitis Media with Effusion", "Senses  ", "Tinnitus", "Travelling", "Universal Newborn Hearing Screening"],
+        eye: ["Aesthetic Eyelid Surgery (Blepharoplasty)", "Age-related Macular Degeneration", "Allergies (Child)", "Amblyopia (Lazy Eye)", "Anophthalmia, Microphthalmia, Post Enucleation Socket Syndrome (PESS) and Socket reconstruction ", "Astigmatism", "Blepharitis", "Cataract", "Central Serous Chorioretinopathy", "Childhood Myopia", "Conjunctivitis and Viral Conjunctivitis", "Corneal Infections", "Corneal Oedema", "Diabetic Retinopathy", "Double Vision (Diplopia)", "Dry Eye Syndrome", "Entropion", "Epiblepharon", "Epiretinal Membrane (Macular Pucker)", "Floaters & Flashes", "Glaucoma", "Hyperopia (Long-sightedness)", "Ischaemic Optic Neuropathy", "Macular Hole", "Myopia (Short-sightedness or Near-sightedness)", "Myopic Maculopathy", "Obstructive Jaundice", "Ocular Inflammation and Immunology", "Optic Neuritis", "Orbital Tumours and Disorders", "Presbyopia (Lao Hua)", "Proliferative Vitreoretinopathy ", "Pterygium", "Retinal Detachment", "Retinal Tear", "Retinal Vascular Disorders", "Retinopathy of Prematurity (ROP)", "Sleepwalking", "Spasms", "Squints", "Squints (Strabismus)", "Tearing Disorders", "Thyroid Eye Disease", "Upper Eyelid Drooping (Ptosis)"],
+        face: ["Cleft Lip and Palate", "Cleft Lip and Palate in Children", "Facial Pain", "Facial Pain (Trigeminal Neuralgia) ", "Functional Neurosurgery", "Jaw Joint (Temporomandibular Joint) Surgery  ", "Obstructive Sleep Apnea", "Orthognathic Surgery"],
+        hair: [],
+        mouth: ["Acute Laryngotracheobrontis (ALTB) or Croup (Child)", "Acute Pharyngitis and Tonsillitis", "Bridges", "Cleft Lip and Palate", "Cleft Lip and Palate in Children", "Convulsion Without Fever", "Cough and Colds", "Croup", "Crowns", "Crying", "Dental Implant", "Denture", "Discoloured Teeth", "Early Childhood Caries", "Endodontic Surgery", "Fillings", "Fussy Eater", "Gastrointestinal Tract Functions and Investigations", "Hand Foot and Mouth Disease", "Hemoptysis", "Jaw Cysts and Tumours", "Jaw Malalignment  ", "Mouth Ulcers", "Obstructive Sleep Apnea", "Oral Cancers", "Oropharyngeal Cancers", "Orthognathic Surgery", "Overweight", "Radio-iodine (I-131) Treatment", "Salivary Gland Infection/Inflammation (Sialedenitis)", "Salivary Gland Tumours", "Snoring in Children", "Swallowing Difficulties", "Talk", "Temporomandibular Joint Disorder", "Tonsil and Adenoids", "Tooth Avulsion (Knocked-out Tooth)", "Travelling", "Veneers", "Vitamin Supplements", "Vomitting", "Weaning"],
+        nose: ["Acoustic Neuroma (Vestibular Schwannoma)", "Allergic Rhinitis", "Bronchiolitis", "Cancer", "Common Sleep Conditions in Infants, Children and Adolescents ", "Cough and Colds", "Croup", "Crying", "Epistaxis", "Minimally Invasive Surgery (MIS) Procedures in Otolaryngology (Ear, Nose and Throat)", "Nasal Polyps", "Nasopharyngeal Cancer", "Nose - Virtual Tour", "Nosebleeds in Children  ", "Obstructive Sleep Apnea", "Obstructive Sleep Apnoea (OSA)", "Obstructive Sleep Apnoea - Continuous Positive Airway Pressure Therapy", "Obstructive Sleep Apnoea in Children", "Oropharyngeal Cancers", "Paranasal Sinus Tumours", "Rhinitis", "Senses  ", "Sinusitis", "Sleep (Child)", "Sleep-disordered Breathing and Snoring", "Snoring and Obstructive Sleep Apnoea (OSA)", "Snoring in Children"],
+        throat: ["Acoustic Neuroma (Vestibular Schwannoma)", "Acute Laryngotracheobrontis (ALTB) or Croup (Child)", "Acute Pharyngitis and Tonsillitis", "Allergic Rhinitis", "Cough and Colds", "Croup", "Crying", "Dysphagia Difficulty in Swallowing", "Enlarged Neck Lymph Nodes", "Esophageal Cancer", "Hemoptysis", "Hypopharyngeal Cancers", "Injuries (Child)", "Larynx Cancer", "Medical Nutrition Therapy for Swallowing Difficulty (Dysphagia)", "Minimally Invasive Surgery (MIS) Procedures in Otolaryngology (Ear, Nose and Throat)", "Neck Lumps", "Obstructive Sleep Apnoea (OSA)", "Odynophagia (Pain on Swallowing)", "Oesophageal Cancer", "Oral Cancers", "Oropharyngeal Cancers", "Salivary Gland Infection/Inflammation (Sialedenitis)", "Salivary Gland Tumours", "Snoring and Obstructive Sleep Apnoea (OSA)", "Snoring in Children", "Swallowing Difficulties", "Throat - Virtual Tour", "Thyroglossal Duct Cysts", "Thyroid Cancer", "Thyroid Nodules", "Thyroid Nodules and Surgery", "Tonsil and Adenoids", "Voice Check", "Voice Disorders - Acute and Chronic Laryngitis ", "Voice Disorders - Muscle Tension Dysphonia", "Voice Disorders - Vocal Fold Paralysis", "Voice Disorders - Vocal Nodules, Polyps, Cysts and Tumours", "Voice Hygiene"],
+        head: ["Acute Pharyngitis and Tonsillitis", "Brain cancer", "Circadian Rhythm: Coping With Shift Work", "Computed Tomography (CT)", "Decompressive Craniectomy", "Head Injury", "Head Injury (Child)", "Head and Neck Cancer", "Head and Neck Reconstruction: Local Flaps", "Head and Neck Reconstruction: Microsurgical Free Flaps  ", "Head and Neck Reconstruction: Regional Flaps", "Head and Neck Surgery", "Headache in Children", "Headaches", "Nasopharyngeal Cancer", "Neurotrauma", "Plagiocephaly", "Skin and Subcutaneous Lumps – Skin Cancers, Lipomas, Epidermoid Cysts", "Sleep Disorders"],
+        neck: ["Acute Pharyngitis and Tonsillitis", "Allergies (Child)", "Arthritis", "Bone Mineral Density Scan (DEXA)", "Bone Scan", "Brain cancer", "Carotid Endarterectomy", "Computed Tomography (CT)", "Head and Neck Cancer", "Head and Neck Reconstruction: Local Flaps", "Head and Neck Reconstruction: Microsurgical Free Flaps  ", "Head and Neck Reconstruction: Regional Flaps", "Head and Neck Surgery", "Headaches", "Hyperthyroidism", "Hypothyroidism", "Hypothyroidism (Child)", "Larynx Cancer", "Musculoskeletal Disorders and Office Ergonomics ", "Nasopharyngeal Cancer", "Neck Pain", "Rheumatoid Arthritis", "Skin and Subcutaneous Lumps – Skin Cancers, Lipomas, Epidermoid Cysts", "Snoring and Obstructive Sleep Apnoea (OSA)", "Thyroid Disorders", "Thyroid Scan", "Torticollis"],
+        blood: ["Abnormal Blood Tests", "Anaemia", "Antenatal Screening For Human munodeficiency Virus (HIV", "Antibiotics", "Bleeding Tendency", "Cancer", "Chemotherapy", "Cholesterol", "Deep Vein Thrombosis", "Dengue Fever", "Dialysis", "Dicopac Test", "Febrile Fit", "Fever", "Hemoptysis", "Hepatitis B", "Lymphoedema", "Menopause", "Multiple Myeloma", "Thalassaemia"],
+        'bones and joints': ["Back Pain and Spine Deformity in Children and Adolescents", "Cancer Pain", "Chronic Back Pain", "Injuries (Child)", "Orthopaedic Problems in Children", "Osteoporosis", "Play", "Sarcoma", "Sport Injuries in Children "],
+        hormones: [],
+        jaw: ["Dental Implant", "Early Childhood Caries", "Obstructive Sleep Apnea", "Orthognathic Surgery", "Temporomandibular Joint Disorder"],
+        'lymph nodes': ["Lymphoedema", "Lymphoma"],
+        'nerves and nervous system': ["Allergic Rhinitis", "Circadian Rhythm: Coping With Shift Work", "Depression", "Insomnia", "Jet Lag, Shift Work and Circadian Rhythm Disorders", "Limit-Setting Type Behavioural Insomnia in Childhood (BIC)", "Neuropathic (Nerve) Pain Syndrome", "Neurostimulation (Spinal Cord Stimulation) ", "Sleep Deprivation", "Sleep Onset Association Type BIC", "Sleep-disordered Breathing and Snoring", "Sleepy Driving", "Sympathetic Blocks"],
+        skin: ["Allergies (Child)", "Antibiotics", "Dengue Fever", "Eczema (Child)", "Effective Obesity Management", "Febrile Fit", "Fever", "Injuries (Child)", "Intrathecal Drug Delivery", "Jaundice", "Obstructive Jaundice", "Rheumatoid Arthritis", "Skin Cancer", "Skin Infections ", "Skin and Subcutaneous Lumps – Skin Cancers, Lipomas, Epidermoid Cysts"]
+    };
 
-/**
- * Create a new HumanMapComponent "class" using ES5 class inheritance notation. 
- * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance
- * 
- * Here we will derive from the base component which all Form.io form components derive from.
- *
- * @param component
- * @param options
- * @param data
- * @constructor
- */
-function HumanMapComponent(component, options, data) {
-    InputComponent.prototype.constructor.call(this, component, options, data);
-}
+    /**
+     * Get the input component class by referencing Formio.Components.components map.
+     */
+    var InputComponent = Formio.Components.components.input;
 
-// Perform typical ES5 inheritance
-HumanMapComponent.prototype = Object.create(InputComponent.prototype);
-HumanMapComponent.prototype.constructor = HumanMapComponent;
+    /**
+     * Create a new HumanMapComponent "class" using ES5 class inheritance notation. 
+     * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance
+     * 
+     * Here we will derive from the base component which all Form.io form components derive from.
+     *
+     * @param component
+     * @param options
+     * @param data
+     * @constructor
+     */
+    function HumanMapComponent(component, options, data) {
+        InputComponent.prototype.constructor.call(this, component, options, data);
+    }
 
-/**
- * Define what the default JSON schema for this component is. We will derive from the InputComponent
- * schema and provide our overrides to that.
- * @return {*}
- */
-HumanMapComponent.schema = function () {
-    return InputComponent.schema({
-        type: 'husmanmap',
-        numRows: 3,
-        numCols: 3
-    });
-};
+    // Perform typical ES5 inheritance
+    HumanMapComponent.prototype = Object.create(InputComponent.prototype);
+    HumanMapComponent.prototype.constructor = HumanMapComponent;
 
-/**
- * Register this component to the Form Builder by providing the "builderInfo" object.
- * 
- * @type {{title: string, group: string, icon: string, weight: number, documentation: string, schema: *}}
- */
-HumanMapComponent.builderInfo = {
-    title: 'Human Map',
-    group: 'basic',
-    icon: 'fa fa-male',
-    weight: 70,
-    documentation: 'http://help.form.io/userguide/#table',
-    schema: HumanMapComponent.schema(),
-};
+    /**
+     * Define what the default JSON schema for this component is. We will derive from the InputComponent
+     * schema and provide our overrides to that.
+     * @return {*}
+     */
+    HumanMapComponent.schema = function () {
+        return InputComponent.schema({
+            type: 'husmanmap',
+            // numRows: 3,
+            // numCols: 3
+        });
+    };
 
-/**
- *  Tell the renderer how to render this component.
- */
-HumanMapComponent.prototype.render = function (element) {
-    var name = 'map' + Math.floor(Math.random() * 1001);
-    hm = `
+    /**
+     * Register this component to the Form Builder by providing the "builderInfo" object.
+     * 
+     * @type {{title: string, group: string, icon: string, weight: number, documentation: string, schema: *}}
+     */
+    HumanMapComponent.builderInfo = {
+        title: 'Human Map',
+        group: 'basic',
+        icon: 'fa fa-male',
+        weight: 70,
+        documentation: 'http://help.form.io/userguide/#table',
+        schema: HumanMapComponent.schema(),
+    };
+
+    /**
+     *  Tell the renderer how to render this component.
+     */
+    HumanMapComponent.prototype.render = function (element) {
+        var name = 'map' + Math.floor(Math.random() * 1001);
+        var statelist = ''
+        for (let i = 0; i < human.head.length; i++) {
+            statelist += '<div class="item">' + human.head[i] + '</div>'
+        }
+        var conditions = ''
+        for (let i = 0; i < human.conditionsItems.brain.length; i++) {
+            conditions += '<div class="item">' + human.conditionsItems.brain[i] + '</div>'
+        }
+
+        hm = `
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Conditions & Treatments and Medicines</h4>
+                <h4 class="card-title">
+                ${
+            this.renderTemplate('label', {
+                label: this.labelInfo,
+                component: this.component,
+                element: element,
+                tooltip: this.interpolate(this.component.tooltip || '').replace(/(?:\r\n|\r|\n)/g, '<br />'),
+            })
+            }
+                </h4>
                 <div class="demo-map">
                     <div class="row">
                         <div class="col-3">
@@ -197,10 +250,12 @@ HumanMapComponent.prototype.render = function (element) {
                         </div>
                         <div class="col-3">
                             <div class="statelist">
+                            ${statelist}
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="conditions">
+                            ${conditions}
                             </div>
                         </div>
                     </div>
@@ -211,105 +266,108 @@ HumanMapComponent.prototype.render = function (element) {
 
     </div>
     `;
-    // var tpl = '<div class="table-responsive">';
-    // tpl += this.renderTemplate('label', {
-    //     label: this.labelInfo,
-    //     component: this.component,
-    //     element: element,
-    //     tooltip: this.interpolate(this.component.tooltip || '').replace(/(?:\r\n|\r|\n)/g, '<br />'),
-    // });
-    // tpl += '<table class="table">';
-    // tpl += '<tbody>';
-    // for (let i = 0; i < this.component.numRows; i++) {
-    //     tpl += '<tr>';
-    //     for (let j = 0; j < this.component.numCols; j++) {
-    //         tpl += '<td>';
-    //         tpl += this.renderTemplate('input', {
-    //             input: {
-    //                 type: 'input',
-    //                 attr: {
-    //                     type: 'checkbox'
-    //                 },
-    //                 id: 'check-' + i + '-' + j
-    //             }
-    //         });
-    //         tpl += '</td>';
-    //     }
-    //     tpl += '</tr>';
-    // }
-    // tpl += '</tbody>';
-    // tpl += '</table>';
-    // tpl += '</div>';
-    // return tpl;
-    return hm;
-};
+        // var tpl = '<div class="table-responsive">';
+        // tpl += this.renderTemplate('label', {
+        //     label: this.labelInfo,
+        //     component: this.component,
+        //     element: element,
+        //     tooltip: this.interpolate(this.component.tooltip || '').replace(/(?:\r\n|\r|\n)/g, '<br />'),
+        // });
+        // tpl += '<table class="table">';
+        // tpl += '<tbody>';
+        // for (let i = 0; i < this.component.numRows; i++) {
+        //     tpl += '<tr>';
+        //     for (let j = 0; j < this.component.numCols; j++) {
+        //         tpl += '<td>';
+        //         tpl += this.renderTemplate('input', {
+        //             input: {
+        //                 type: 'input',
+        //                 attr: {
+        //                     type: 'checkbox'
+        //                 },
+        //                 id: 'check-' + i + '-' + j
+        //             }
+        //         });
+        //         tpl += '</td>';
+        //     }
+        //     tpl += '</tr>';
+        // }
+        // tpl += '</tbody>';
+        // tpl += '</table>';
+        // tpl += '</div>';
+        // return tpl;
+        return hm;
+    };
 
-/**
- * Provide the input element information. Because we are using checkboxes, the change event needs to be 
- * 'click' instead of the default 'change' from the InputComponent.
- * 
- * @return {{type, component, changeEvent, attr}}
- */
-HumanMapComponent.prototype.elementInfo = function () {
-    const info = InputComponent.prototype.elementInfo.call(this);
-    info.changeEvent = 'click';
-    return info;
-};
+    /**
+     * Provide the input element information. Because we are using checkboxes, the change event needs to be 
+     * 'click' instead of the default 'change' from the InputComponent.
+     * 
+     * @return {{type, component, changeEvent, attr}}
+     */
+    HumanMapComponent.prototype.elementInfo = function () {
+        const info = InputComponent.prototype.elementInfo.call(this);
+        info.changeEvent = 'click';
+        return info;
+    };
 
-/**
- * Tell the renderer how to "get" a value from this component.
- * 
- * @return {Array}
- */
-HumanMapComponent.prototype.getValue = function () {
+    /**
+     * Tell the renderer how to "get" a value from this component.
+     * 
+     * @return {Array}
+     */
+    HumanMapComponent.prototype.getValue = function () {
 
-    var value = [];
-    if (!this.refs.input || !this.refs.input.length) {
+        var value = [];
+        if (!this.refs.input || !this.refs.input.length) {
+            return value;
+        }
+        for (let i = 0; i < this.component.numRows; i++) {
+            value[i] = [];
+            for (let j = 0; j < this.component.numCols; j++) {
+                var index = (i * this.component.numCols) + j;
+                if (this.refs.input[index]) {
+                    value[i][j] = !!this.refs.input[index].checked;
+                }
+            }
+        }
         return value;
-    }
-    for (let i = 0; i < this.component.numRows; i++) {
-        value[i] = [];
-        for (let j = 0; j < this.component.numCols; j++) {
-            var index = (i * this.component.numCols) + j;
-            if (this.refs.input[index]) {
-                value[i][j] = !!this.refs.input[index].checked;
+
+        // return [document.querySelector('.conditions item.actived').textContent];
+    };
+
+    /**
+     * Tell the renderer how to "set" the value of this component.
+     * 
+     * @param value
+     * @return {boolean}
+     */
+    HumanMapComponent.prototype.setValue = function (value) {
+        var changed = InputComponent.prototype.updateValue.call(this, value);
+        if (!value) {
+            return changed;
+        }
+        for (let i = 0; i < this.component.numRows; i++) {
+            if (!value[i]) {
+                break;
+            }
+            for (let j = 0; j < this.component.numCols; j++) {
+                if (!value[i][j]) {
+                    return false;
+                }
+                let checked = value[i][j] ? 1 : 0;
+                var index = (i * this.component.numCols) + j;
+                this.refs.input[index].value = checked;
+                this.refs.input[index].checked = checked;
             }
         }
-    }
-    // return value;
-    return [document.querySelector('.conditions item.actived').textContent];
-};
-
-/**
- * Tell the renderer how to "set" the value of this component.
- * 
- * @param value
- * @return {boolean}
- */
-HumanMapComponent.prototype.setValue = function (value) {
-    var changed = InputComponent.prototype.updateValue.call(this, value);
-    if (!value) {
         return changed;
-    }
-    for (let i = 0; i < this.component.numRows; i++) {
-        if (!value[i]) {
-            break;
-        }
-        for (let j = 0; j < this.component.numCols; j++) {
-            if (!value[i][j]) {
-                return false;
-            }
-            let checked = value[i][j] ? 1 : 0;
-            var index = (i * this.component.numCols) + j;
-            this.refs.input[index].value = checked;
-            this.refs.input[index].checked = checked;
-        }
-    }
-    return changed;
-};
+    };
 
-// Use the table component edit form.
-HumanMapComponent.editForm = Formio.Components.components.table.editForm;
+    // Use the table component edit form.
+    HumanMapComponent.editForm = Formio.Components.components.table.editForm;
 
-// Register the component to the Formio.Components registry.
-Formio.Components.addComponent('husmanmap', HumanMapComponent);
+    // Register the component to the Formio.Components registry.
+    Formio.Components.addComponent('husmanmap', HumanMapComponent);
+
+})();

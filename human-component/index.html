@@ -55,9 +55,6 @@
                 instance.on('change', function () {
                     json.innerHTML = '';
                     json.appendChild(document.createTextNode(JSON.stringify(instance.submission, null, 4)));
-
-                    // var humanmapobj = new HumanMap('#formio');
-                    // $('#formio .map').mapster(humanmapobj.default_option);
                 });
                 builder.on('change', function (schema) {
                     if (schema.components) {
