@@ -12,10 +12,10 @@
 
     <!-- human-map -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="jquery.imagemapster.js"></script>
+    <script type="text/javascript" src="jquery.imagemapster.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="human.css">
+    <link rel="stylesheet" href="human-component.css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
     </div>
 
     <script src="human-component.js"></script>
-    <script src="human.js"></script>
+
     <script type='text/javascript'>
         Formio.builder(document.getElementById('builder'), {}, {
             builder: {
@@ -55,15 +55,14 @@
                 instance.on('change', function () {
                     json.innerHTML = '';
                     json.appendChild(document.createTextNode(JSON.stringify(instance.submission, null, 4)));
-                    
-                    const humanmapobj = new HumanMap('#formio');
-                    
-                    $('#formio .map').mapster(humanmapobj.default_option);
+
+                    // var humanmapobj = new HumanMap('#formio');
+                    // $('#formio .map').mapster(humanmapobj.default_option);
                 });
                 builder.on('change', function (schema) {
                     if (schema.components) {
                         instance.form = schema;
-                        const humanmapobj =new HumanMap('#formio');
+                        var humanmapobj = new HumanMap('#formio');
                         $('#formio .map').mapster(humanmapobj.default_option);
                     }
                 });
