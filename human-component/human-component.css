@@ -7,43 +7,40 @@
     width: 100%;
     overflow-y: auto;
     height: 500px;
-
 }
 
 /*statelist*/
-.statelist .item {
-    display: block;
-    background: #f1f1f1;
-    padding: 8px;
-}
-
-.statelist .item:hover {
-    background-color: #555;
-    color: white;
-}
-
-.statelist .item.actived {
-    background-color: #4CAF50;
-    color: white;
-}
-
-/* .conditions */
+.statelist .item,
 .conditions .item {
     display: block;
     background: #f1f1f1;
     padding: 8px;
 }
 
+.statelist .item:hover,
 .conditions .item:hover {
     background-color: #555;
     color: white;
+    cursor: pointer;
 }
 
+.statelist .item.actived,
 .conditions .item.actived {
     background-color: #4CAF50;
-    color: #fff;
+    color: white;
 }
 
+.statelist .item.visibility,
+.conditions .item.visibility {
+    display: none;
+}
+.statelist .item input,
+.conditions .item input{
+   width: 0px;
+   height: 0px;
+}
+
+/* .conditions */
 .conditions.no-record {
     text-align: center;
     display: flex;
