@@ -1,0 +1,34 @@
+.container {
+    background: red;
+    max-width: 960px;
+    max-height: 1000px;
+    margin: 0 auto;
+    padding: 5px;
+
+    display: flex;
+}
+
+.item {
+    background: blue;
+    margin: 5px;
+    color: white;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.item1 {
+    order: 4;
+}
+
+.item2 {
+    order: 3;
+}
+
+.item3 {
+    order: 1;
+}
+
+.item4 {
+    order: 2;
+}
