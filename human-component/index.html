@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="http://manos.malihu.gr/repository/custom-scrollbar/demo/jquery.mCustomScrollbar.css">
     <link rel='stylesheet' href='formio.full.css'>
 </head>
 
@@ -22,6 +23,8 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript"
+        src="http://manos.malihu.gr/repository/custom-scrollbar/demo/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="jquery.imagemapster.min.js"></script>
     <script src='formio.full.js'></script>
     <script type='text/javascript'>
@@ -38,10 +41,10 @@
                         instance.form = schema;
 
                         var default_option = {
-                            fillColor: 'ff0000',
+                            fillColor: '40E0D0',
                             stroke: true,
                             singleSelect: true,
-                            fillOpacity: 0.2,
+                            fillOpacity: 0.6,
                             mapKey: 'data-state',
                             onClick: function (e) {
                                 document.querySelectorAll('.item').forEach(option => {
@@ -50,6 +53,14 @@
                                 document.querySelectorAll('#formio .statelist .item.' + e.key.toLowerCase()).forEach(option => {
                                     option.classList.remove('visibility');
                                 });
+                                var optionsScroll = {
+                                    axis: "yx",
+                                    scrollButtons: { enable: true },
+                                    theme: "3d",
+                                    scrollbarPosition: "outside"
+                                };
+                                $('.second-col').mCustomScrollbar(optionsScroll);
+                                $('.third-col').mCustomScrollbar(optionsScroll);
                             },
                         };
                         $('.map').mapster(default_option);
