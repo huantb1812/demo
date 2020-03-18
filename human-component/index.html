@@ -7,6 +7,11 @@
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
     <link rel="stylesheet" href="http://manos.malihu.gr/repository/custom-scrollbar/demo/jquery.mCustomScrollbar.css">
     <link rel='stylesheet' href='formio.full.css'>
+    <style>
+        .mCSB_inside .mCSB_container {
+            margin-right: 15px;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,13 +59,13 @@
                                     option.classList.remove('visibility');
                                 });
                                 var optionsScroll = {
-                                    axis: "yx",
+                                    axis: "y",
                                     scrollButtons: { enable: true },
                                     theme: "3d",
-                                    scrollbarPosition: "outside"
+                                    // scrollbarPosition: "outside"
                                 };
-                                $('.second-col').mCustomScrollbar(optionsScroll);
-                                $('.third-col').mCustomScrollbar(optionsScroll);
+                                $('#formio .second-col').mCustomScrollbar(optionsScroll);
+                                $('#formio .third-col').mCustomScrollbar(optionsScroll);
                             },
                         };
                         $('.map').mapster(default_option);
