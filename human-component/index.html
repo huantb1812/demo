@@ -26,14 +26,45 @@
     <div class="card card-body bg-light jsonviewer">
         <pre id="json"></pre>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <input type="text" name="xxx" id="xxx">
+        </div>
+    </div>
 
     <script type="text/javascript" src="libs/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript"
-        src="libs/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript" src="jquery.imagemapster.min.js"></script>
+    <script type="text/javascript" src="libs/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="jquery.imagemapster.js"></script>
     <script src='formio.full.js'></script>
+    <script src='xxx.js'></script>
     <script type='text/javascript'>
+        var default_option = {
+            fillColor: '40E0D0',
+            stroke: true,
+            singleSelect: true,
+            fillOpacity: 0.6,
+            mapKey: 'data-state',
+            onClick: function (e) {
+                document.querySelectorAll('.item').forEach(option => {
+                    option.classList.add('visibility');
+                });
+                document.querySelectorAll('#formio .statelist .item.' + e.key.toLowerCase()).forEach(option => {
+                    option.classList.remove('visibility');
+                });
+                var optionsScroll = {
+                    axis: "y",
+                    scrollButtons: { enable: true },
+                    theme: "3d",
+                    // scrollbarPosition: "outside"
+                };
+                $('#formio .second-col').mCustomScrollbar(optionsScroll);
+                $('#formio .third-col').mCustomScrollbar(optionsScroll);
+            },
+        };
+        var humanMap = new HumanMap(default_option);
 
+        $('#xxx').hunhun(default_option);
+        debugger;
         Formio.builder(document.getElementById('builder'), {}).then(function (builder) {
             Formio.createForm(document.getElementById('formio'), {}).then(function (instance) {
                 var json = document.getElementById('json');
@@ -44,7 +75,7 @@
                 builder.on('change', function (schema) {
                     if (schema.components) {
                         instance.form = schema;
-
+                        // head-Ear-Cochlear Implant
                         var default_option = {
                             fillColor: '40E0D0',
                             stroke: true,
